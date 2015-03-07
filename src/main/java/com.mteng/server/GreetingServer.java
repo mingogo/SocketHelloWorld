@@ -5,22 +5,17 @@ package com.mteng.server;
 import java.net.*;
 import java.io.*;
 
-public class GreetingServer extends Thread
-{
+public class GreetingServer extends Thread {
     private ServerSocket serverSocket;
 
-    public GreetingServer(int port) throws IOException
-    {
+    public GreetingServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        serverSocket.setSoTimeout(10000);
+        serverSocket.setSoTimeout(100000);
     }
 
-    public void run()
-    {
-        while(true)
-        {
-            try
-            {
+    public void run() {
+        while (true) {
+            try {
                 System.out.println("Waiting for client on port " +
                         serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
@@ -34,26 +29,22 @@ public class GreetingServer extends Thread
                 out.writeUTF("Thank you for connecting to "
                         + server.getLocalSocketAddress() + "\nGoodbye!");
                 server.close();
-            }catch(SocketTimeoutException s)
-            {
+            } catch (SocketTimeoutException s) {
                 System.out.println("Socket timed out!");
                 break;
-            }catch(IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
                 break;
             }
         }
     }
-    public static void main(String [] args)
-    {
+
+    public static void main(String[] args) {
         int port = Integer.parseInt(args[0]);
-        try
-        {
+        try {
             Thread t = new GreetingServer(port);
             t.start();
-        }catch(IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
