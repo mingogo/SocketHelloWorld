@@ -1,4 +1,4 @@
-package com.mteng.server;
+package com.mteng.basicSocket.server;
 
 // File Name GreetingServer.java
 
