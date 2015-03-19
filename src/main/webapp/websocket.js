@@ -1,6 +1,7 @@
 window.onload = init;
 //var socket = new WebSocket("ws://localhost:8080/WebsocketHome/actions");
-var socket = new WebSocket("ws://172.29.128.99:8002/socketHelloWorld/actions");
+// var socket = new WebSocket("ws://172.29.128.99:8002/socketHelloWorld/actions");
+var socket = new WebSocket("ws://localhost:8481/socketHelloWorld/actions");
 socket.onmessage = onMessage;
 
 function onMessage(event) {
